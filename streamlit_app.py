@@ -39,7 +39,7 @@ right.download_button(
 )
 
 models = {
-    "Logistic Regression": "model/logit.pkl",
+    "Logistic Regression": "model/logistic_regression.pkl",
     "Decision Tree Classifier": "model/decision_tree.pkl",
     "K-Nearest Neighbor Classifier": "model/knn.pkl",
     "Naive Bayes Classifier (Gaussian)": "model/gaussian_nb.pkl",

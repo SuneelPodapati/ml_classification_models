@@ -39,14 +39,13 @@ right.download_button(
 )
 
 models = {
-    "Logistic Regression": "model/logit.pkl",
+    "Logistic Regression": "model/logistic_regression.pkl",
     "Decision Tree Classifier": "model/decision_tree.pkl",
     "K-Nearest Neighbor Classifier": "model/knn.pkl",
     "Naive Bayes Classifier (Gaussian)": "model/gaussian_nb.pkl",
     "Ensemble Model - Random Forest": "model/random_forest.pkl",
     "Ensemble Model - XGBoost": "model/xgboost.pkl"
 }
-
 
 selected_model = st.selectbox("Select Model", models.keys(), index=None, key="selected_model")
 uploaded_file = st.file_uploader("Upload test data file for model evaluation", type="csv", key="uploaded_file")
