@@ -1,10 +1,11 @@
 import streamlit as st
 import joblib
 import pandas as pd
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay 
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
+from sklearn.metrics import (accuracy_score, roc_auc_score, precision_score, recall_score, f1_score, matthews_corrcoef)
 import matplotlib.pyplot as plt
 
-
+st.set_page_config(page_title="ML Assignment 2", page_icon=":brain:", layout="centered")
 st.title("Heart Failure Prediction 🫀 ")
 st.markdown(":rainbow[A Classification Models Evaluation Assignment]")
 
@@ -56,31 +57,42 @@ if selected_model is None:
 elif uploaded_file is None: 
     st.toast("Please upload a test CSV file.", icon="🚨")
 
-else: 
-	try: 
-		X_test = pd.read_csv(uploaded_file) 
-	except Exception as e: 
-		st.toast(f"Error reading CSV: {e}", icon="🔥")
-	
-	if X_test.shape[1] != 12: 
-		st.toast(f"Expected 12 columns in test file, but found {X_test.shape[1]}.", icon="🔥")
-	
-	try: 
-		pkl_path = models[selected_model]
-		with open(pkl_path, "rb") as pkl: 
-			model = joblib.load(pkl) 
-	except Exception as e: 
-		st.error(f"Error loading model: {e}") 
-	
-	
-	y_pred = model.predict(X_test)
-	y_test = pd.read_csv("./data/test_target_data.csv") 
-	
-	cm = confusion_matrix(y_test, y_pred) 
-	fig, ax = plt.subplots() 
-	disp = ConfusionMatrixDisplay(confusion_matrix=cm) 
-	ax.set_title("Confusion Matrix", fontsize = 10)
-	disp.plot(ax=ax, cmap="Blues", colorbar=False)
-	st.pyplot(fig)
-
+else:
+    try:
+        X_test = pd.read_csv(uploaded_file)
+    except Exception as e:
+        st.toast(f"Error reading CSV: {e}", icon="🔥")
     
+    if X_test.shape[1] != 12:
+        st.toast(f"Expected 12 columns in test file, but found {X_test.shape[1]}.", icon="🔥")
+    
+    try:
+        pkl_path = models[selected_model]
+        with open(pkl_path, "rb") as pkl:
+            model = joblib.load(pkl)
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+    
+    y_pred = model.predict(X_test)
+    y_test = pd.read_csv("./data/test_target_data.csv")
+
+    st.subheader("Evaluation Metrics")
+    metrics = pd.DataFrame(
+        {
+            "Accuracy": round(accuracy_score(y_test, y_pred), 3), 
+            "AUC": round(roc_auc_score(y_test, (model.predict_proba(X_test)[:, 1])), 3), 
+            "Precision": round(precision_score(y_test, y_pred), 3), 
+            "Recall": round(recall_score(y_test, y_pred), 3), 
+            "F1": round(f1_score(y_test, y_pred), 3), 
+            "MCC": round(matthews_corrcoef(y_test, y_pred), 3) 
+        },
+        index=[selected_model]
+    )
+    st.table(metrics)
+    
+    st.subheader("Confusion Matrix")
+    cm = confusion_matrix(y_test, y_pred) 
+    fig, ax = plt.subplots() 
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+    disp.plot(ax=ax, cmap="Blues", colorbar=False)
+    st.pyplot(fig)
