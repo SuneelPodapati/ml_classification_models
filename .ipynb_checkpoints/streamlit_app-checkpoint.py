@@ -96,3 +96,8 @@ else:
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot(ax=ax, cmap="Blues", colorbar=False)
     st.pyplot(fig)
+    
+    st.subheader("Classification Report")
+    report = classification_report(y_test, y_pred, output_dict=True)
+    df_report = pd.DataFrame(report).T
+    st.dataframe(df_report.style.format(precision=4))
