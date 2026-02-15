@@ -84,4 +84,6 @@ The application can be used to
 - view the model evaluation metrics:  Accuracy, AUC, Precision, Recall, F1, and MCC.
 - view confusion matrix and classification report.
 
-
+## Sample Evaluation: Random Forest
+<img width="445" height="548" alt="image" src="https://github.com/user-attachments/assets/ce5dc8f9-c433-4e4b-b27e-e9b0861480db" />
+<img width="391" height="549" alt="image" src="https://github.com/user-attachments/assets/dd07ca93-3ad7-411a-aaba-5b40a66f7668" />
