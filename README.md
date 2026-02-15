@@ -72,7 +72,7 @@ The following machine learning classification models were implemented and evalua
 | XGBoost |Another top-tier model with excellent accuracy (0.936) and AUC (0.984). Precision (0.943) and recall (0.835) are well-balanced, though slightly lower than Random Forest. Still a highly dependable model with strong generalization. |
 
 ## Conclusion
-Ensemble methods - Random Forest achieved the highest AUC and strongest overall metrics on this dataset. This model has a good trade-off between accuracy, F1, and MCC, making it the preferred choice for production use.
+Ensemble Model - Random Forest achieved the highest AUC and strongest overall metrics on this dataset. This model has a good trade-off between accuracy, F1, and MCC, making it the preferred choice for production use.
 
 ## Streamlit 🚀
 The trained models are saved into `pkl` files and are deployed to Streamlit with an interactive evaluation application at [https://sp-ml-assignment2.streamlit.app/](https://sp-ml-assignment2.streamlit.app/)
