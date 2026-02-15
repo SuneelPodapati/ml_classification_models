@@ -11,7 +11,7 @@ The target/outcome variable:
 ## b. Dataset description
 [`Heart Failure Prediction`](https://www.kaggle.com/datasets/aadarshvelu/heart-failure-prediction-clinical-records) data from Kaggle.
 
-The Heart Failure Clinical Records data contains clinical and demographic information of patients diagnosed with heart failure. It contains details about existing medical conditions and also clinical measurements such as ejection fraction, serum creatinine, and serum sodium. These attributes are highly useful for predicting a patient’s risk of mortality during the follow-up period.
+The Heart Failure Clinical Records data contains clinical and demographic information of patients diagnosed with heart failure. It contains details about existing medical conditions and clinical measurements such as ejection fraction, serum creatinine, and serum sodium. These attributes are highly useful for predicting a patient’s risk of mortality during the follow-up period.
 
 __Features: _12___ - `age` `creatinine_phosphokinase` `ejection_fraction` `platelets` `serum_creatinine` `serum_sodium` `time` `anaemia` `diabetes` `high_blood_pressure` `sex` `smoking`
 
@@ -23,7 +23,7 @@ __Train/Test split: 80:20 → _1055:264___
 
 ### Attribute details
 - age: age of the patient (years)
-- anaemia: decrease of red blood cells or hemoglobin (boolean)
+- anaemia: decrease of red blood cells or haemoglobin (boolean)
 - creatinine phosphokinase (CPK): level of the CPK enzyme in the blood (mcg/L)
 - diabetes: if the patient has diabetes (boolean)
 - ejection fraction: percentage of blood leaving the heart at each contraction (percentage)
@@ -39,7 +39,7 @@ __Train/Test split: 80:20 → _1055:264___
 ### Feature Engineering
 - Instances with same feature values but different (contradicting) target values has been cleaned to have single instance for each combination of features. 
 - All categorical features are One-hot encoded
-- All numberical features are z-score normalized (standardization)
+- All numerical features are z-score normalized (standardization)
 
 ## c. Models used
 The following machine learning classification models were implemented and evaluated using the same dataset. The evaluation metrics used for comparison are Accuracy, AUC Score, Precision, Recall, F1 Score, and Matthews Correlation Coefficient (MCC).
@@ -64,9 +64,9 @@ The following machine learning classification models were implemented and evalua
 ### Observations on Model Performance
 | ML Model Name | Observation about model performance |
 |-------------|-----------------------------------|
-| Logistic Regression | A solid baseline model with balanced performance. Accuracy (0.856) and AUC (0.886) indicate good overall discrimination. Precision (0.797) is stronger than recall (0.696), meaning it predicts positive cases conservatively and may miss some true death events. Could not improve the performance even after increasing the interations by 10x |
+| Logistic Regression | A solid baseline model with balanced performance. Accuracy (0.856) and AUC (0.886) indicate good overall discrimination. Precision (0.797) is stronger than recall (0.696), meaning it predicts positive cases conservatively and may miss some true death events. Could not improve the performance even after increasing the iterations by 10x |
 | Decision Tree Classifier |Very strong performance with high accuracy (0.951) and excellent recall (0.937). It captures most positive cases and maintains high precision (0.902). However, single trees can overfit, so this performance may not generalize as consistently as ensemble methods. |
-| K-Nearest Neighbor Classifier | Shows mixed behavior: high precision (0.917) but low recall (0.557). This means it is very good at avoiding false positives but misses many true positives. Accuracy (0.852) and AUC (0.936) are strong, but the imbalance between precision and recall suggests sensitivity issues. Increasing the k value after 6 was also invreasing the error |
+| K-Nearest Neighbor Classifier | Shows mixed behavior: high precision (0.917) but low recall (0.557). This means it is very good at avoiding false positives but misses many true positives. Accuracy (0.852) and AUC (0.936) are strong, but the imbalance between precision and recall suggests sensitivity issues. Increasing the k value after 6 was also increasing the error |
 | Naive Bayes (Gaussian) | The weakest performer in your set. Accuracy (0.799), recall (0.570), and F1 (0.629) are noticeably lower. The independence assumption likely limits its ability to model the clinical relationships in this dataset. |
 | Random Forest | The best overall performer. Outstanding accuracy (0.962), AUC (0.985), and F1 (0.935). Precision (0.960) and recall (0.911) are both high, showing excellent balance. MCC (0.909) confirms strong reliability across both classes. |
 | XGBoost |Another top-tier model with excellent accuracy (0.936) and AUC (0.984). Precision (0.943) and recall (0.835) are well-balanced, though slightly lower than Random Forest. Still a highly dependable model with strong generalization. |
