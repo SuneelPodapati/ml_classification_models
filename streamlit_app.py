@@ -19,6 +19,10 @@ The trained models are:
 4. Naive Bayes Classifier (Gaussian) 
 5. Ensemble Model - Random Forest 
 6. Ensemble Model - XGBoost 
+
+The target/outcome variable:
+- __`y = 0 => Not Dead` → Survived__
+- __`y = 1 => Dead` → Not Survived__
 """)
 st.divider()
 
@@ -93,11 +97,11 @@ else:
     st.subheader("Confusion Matrix")
     cm = confusion_matrix(y_test, y_pred) 
     fig, ax = plt.subplots() 
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Survived', 'Not Survived'])
     disp.plot(ax=ax, cmap="Blues", colorbar=False)
     st.pyplot(fig)
     
     st.subheader("Classification Report")
-    report = classification_report(y_test, y_pred, output_dict=True)
+    report = classification_report(y_test, y_pred, target_names=['Survived', 'Not Survived'], output_dict=True)
     df_report = pd.DataFrame(report).T
     st.dataframe(df_report.style.format(precision=4))
