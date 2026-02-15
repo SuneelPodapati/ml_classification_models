@@ -94,14 +94,14 @@ else:
     )
     st.table(metrics)
     
-    st.subheader("Confusion Matrix")
+    st.subheader(f"Confusion Matrix ({selected_model})")
     cm = confusion_matrix(y_test, y_pred) 
     fig, ax = plt.subplots() 
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Survived', 'Not Survived'])
     disp.plot(ax=ax, cmap="Blues", colorbar=False)
     st.pyplot(fig)
     
-    st.subheader("Classification Report")
+    st.subheader(f"Classification Report ({selected_model})")
     report = classification_report(y_test, y_pred, target_names=['Survived', 'Not Survived'], output_dict=True)
     df_report = pd.DataFrame(report).T
     st.dataframe(df_report.style.format(precision=4))
