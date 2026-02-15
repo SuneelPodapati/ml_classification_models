@@ -37,3 +37,21 @@ __Train/Test split: 80:20 → _1055:264___
 - DEATH_EVENT: if the patient died during the follow-up period (boolean)
 
 ## c. Models used
+The following machine learning classification models were implemented and evaluated using the same dataset. The evaluation metrics used for comparison are Accuracy, AUC Score, Precision, Recall, F1 Score, and Matthews Correlation Coefficient (MCC).
+1. Logistic Regression 
+2. Decision Tree Classifier 
+3. K-Nearest Neighbor Classifier 
+4. Naive Bayes Classifier (Gaussian) 
+5. Ensemble Model - Random Forest 
+6. Ensemble Model - XGBoost
+
+###  Comparison Table
+
+| ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
+|-------------|--------------|-----|----------|--------|---------|-----|
+| Logistic Regression | 0.856 | 0.886 | 0.797 | 0.696 | 0.743 | 0.647 |
+| Decision Tree Classifier | 0.951 | 0.947 | 0.902 | 0.937 | 0.919 | 0.884 |
+| K-Nearest Neighbor Classifier | 0.852 | 0.936 | 0.917 | 0.557 | 0.693 | 0.636 |
+| Naive Bayes Classifier (Gaussian) | 0.799 | 0.850 | 0.703 | 0.570 | 0.629 | 0.499 |
+| Random Forest (Ensemble) | 0.962 | 0.985 | 0.960 | 0.911 | 0.935 | 0.909 |
+| XGBoost (Ensemble) | 0.936 | 0.984 | 0.943 | 0.835 | 0.886 | 0.844 |
