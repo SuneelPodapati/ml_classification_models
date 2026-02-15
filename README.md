@@ -55,3 +55,15 @@ The following machine learning classification models were implemented and evalua
 | Naive Bayes Classifier (Gaussian) | 0.799 | 0.850 | 0.703 | 0.570 | 0.629 | 0.499 |
 | Random Forest (Ensemble) | 0.962 | 0.985 | 0.960 | 0.911 | 0.935 | 0.909 |
 | XGBoost (Ensemble) | 0.936 | 0.984 | 0.943 | 0.835 | 0.886 | 0.844 |
+
+### Observations on Model Performance
+| ML Model Name | Observation about model performance |
+|-------------|-----------------------------------|
+| Logistic Regression | A solid baseline model with balanced performance. Accuracy (0.856) and AUC (0.886) indicate good overall discrimination. Precision (0.797) is stronger than recall (0.696), meaning it predicts positive cases conservatively and may miss some true death events. Could not improve the performance even after increasing the interations by 10x |
+| Decision Tree Classifier |Very strong performance with high accuracy (0.951) and excellent recall (0.937). It captures most positive cases and maintains high precision (0.902). However, single trees can overfit, so this performance may not generalize as consistently as ensemble methods. |
+| K-Nearest Neighbor Classifier | Shows mixed behavior: high precision (0.917) but low recall (0.557). This means it is very good at avoiding false positives but misses many true positives. Accuracy (0.852) and AUC (0.936) are strong, but the imbalance between precision and recall suggests sensitivity issues. Increasing the k value after 6 was also invreasing the error |
+| Naive Bayes (Gaussian) | The weakest performer in your set. Accuracy (0.799), recall (0.570), and F1 (0.629) are noticeably lower. The independence assumption likely limits its ability to model the clinical relationships in this dataset. |
+| Random Forest | The best overall performer. Outstanding accuracy (0.962), AUC (0.985), and F1 (0.935). Precision (0.960) and recall (0.911) are both high, showing excellent balance. MCC (0.909) confirms strong reliability across both classes. |
+| XGBoost | 
+Another top-tier model with excellent accuracy (0.936) and AUC (0.984). Precision (0.943) and recall (0.835) are well-balanced, though slightly lower than Random Forest. Still a highly dependable model with strong generalization.
+ |
